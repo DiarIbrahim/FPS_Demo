@@ -17,16 +17,24 @@ public:
 
 	bool bIsOpen = false;
 
+	// Components
+
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	USceneComponent* root;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	
+	// colision, this door will be detected based on this collsion's overlap
 	class USphereComponent* collision;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+
+	// holds and rotates the door, this allows to move the door freely regardless of its pivot
 	USceneComponent* DoorHolder;
+	// the actual door mesh
 	UPROPERTY(BlueprintReadWrite ,EditAnywhere)
 	UStaticMeshComponent* DoorMesh;
 
+	// whether to invers the opening direction
 	UPROPERTY(BlueprintReadWrite, EditAnywhere , Category = "Door | Attributes")
 	bool bFlipOpenningDir = false;
 
@@ -40,7 +48,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-
+	// can be called to make interaction on this door
 	UFUNCTION(BlueprintCallable)
 	void Interact();
 

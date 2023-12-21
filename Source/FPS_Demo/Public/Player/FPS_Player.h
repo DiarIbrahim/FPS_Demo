@@ -117,21 +117,21 @@ public:
 	/*
 		returns an index represents the current animation state
 		returns 0 if speed is 0.0        (idle)
-		returns 1 if speed is ~600       (walk)
-		returns 2 if speed more than 600 (run)
+		returns 1 if speed is ~300       (walk)
+		returns 2 if speed more than 350 (run)
 	*/
 
 	short GetSpeedIndex() const;
 	
 	/*
 		calculates velocity  starting from -1 to 1
-		for right and left
+		for right and left, forward and backward
 
 	*/
 	void CalculateVelocity();
 
 	/*
-		called while shooting
+		called while shooting for BP
 	*/
 	UFUNCTION(BlueprintImplementableEvent, Meta = (displayName = "OnShoot"))
 	void OnShoot_BP();
@@ -141,7 +141,11 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable)
 	class UWeaponManagerComponent* GetWeapon() const { return Weapon; }
+	/*
+		returns Camera
+	*/
 	class UCameraComponent* GetCamera()const { return camera; }
+
 
 	bool IsRunning()const;
 	bool IsAiming()const;

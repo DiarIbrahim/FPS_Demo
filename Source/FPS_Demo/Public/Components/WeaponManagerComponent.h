@@ -31,7 +31,7 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Weapon | attributes")
 	int32 magazineSize = 20;
 	/*
-	the size of this weapons magazine
+	the number of bullets currently on magazine
 */
 	int32 NumOnMagazine = 0;
 	/*
@@ -41,12 +41,14 @@ protected:
 	float shootTime = 0.05;
 
 	/*
-		whether this weapon supports multiple shot on hold or no
+		whether this weapon supports multiple shot on hold or not 
 	*/
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Weapon | attributes")
 	bool bWeaponSupportShootOnHold = false;
 
-
+	//
+	// montages
+	//
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Weapon | Monages")
 	class UAnimMontage* AnimMontage_shoot;
@@ -64,8 +66,10 @@ protected:
 
 public:	
 
+	// the socket name of the bone used as aim spot
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Weapon | Aim")
 	FName AimSocketName;
+	// offseting the aiming
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Weapon | Aim")
 	FVector AimOffset;
 
@@ -105,7 +109,7 @@ public:
 	void Reload();
 
 	/*
-		called when this weapon started reloading
+		called when this weapon started reloading, called from animBp
 	*/
 	void OnReloadStarted();
 	/*
@@ -114,15 +118,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void OnReloadFinished();
 
-
-
-
 	/*
 		is reloading
 
 	*/
-
-
 	bool IsReloading() const { return bIsReloading; }
 
 		

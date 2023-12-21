@@ -26,12 +26,12 @@ ADoor::ADoor()
 	if (!DoorHolder) {
 		DoorHolder = CreateDefaultSubobject<USceneComponent>(FName("Door Holder"));
 		DoorHolder->SetupAttachment(root);
+
 	}
 
 	if (!DoorMesh) {
 		DoorMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("Door Mesh"));
 		DoorMesh->SetupAttachment(DoorHolder);
-		DoorMesh->SetMobility(EComponentMobility::Movable);
 	}
 
 }
@@ -48,12 +48,12 @@ void ADoor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	// opens and closes the door based on @bIsOpen
 	if (bIsOpen && !FMath::IsNearlyEqual(DoorHolder->GetRelativeRotation().Yaw , bFlipOpenningDir ? 90 : -90 , 0.005)) {
 		DoorHolder->SetRelativeRotation(FRotator(0, FMath::Lerp(DoorHolder->GetRelativeRotation().Yaw , bFlipOpenningDir ? 90 : -90 , DeltaTime*10), 0));
 	}
 	else if(!bIsOpen && !FMath::IsNearlyEqual(DoorHolder->GetRelativeRotation().Yaw, 0, 0.005)){
 		DoorHolder->SetRelativeRotation(FRotator(0, FMath::Lerp(DoorHolder->GetRelativeRotation().Yaw, 0, DeltaTime * 10), 0));
-
 	}
 
 }
