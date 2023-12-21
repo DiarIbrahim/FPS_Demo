@@ -49,6 +49,11 @@ SourceArt/**/*.tga
 Binaries/*
 Plugins/*/Binaries/*
 
+# contents
+content/Megascans/*
+content/MSPresets/*
+
+
 # Builds
 Build/*
 
